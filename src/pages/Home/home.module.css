@@ -1,0 +1,249 @@
+/* Главный контейнер на весь экран */
+.mainWrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  color: #ffffff;
+  padding: 40px 20px;
+}
+
+/* Активный слайд */
+.slideActive {
+  opacity: 1 !important;
+}
+
+/* Контейнер для слайд-шоу */
+.slideshowContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-color: #0a0a0a;
+}
+
+/* Слайды */
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  z-index: -3;
+}
+
+/* Тонировка заднего плана (Исправлено: добавлен % и усилена темнота для контраста) */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none; 
+  background: linear-gradient(
+    135deg,
+    rgba(6, 6, 6, 0.97) 0%, 
+    rgba(12, 6, 3, 0.96) 100%
+  );
+}
+
+/* Горизонтальная супер-карточка как на макете зображення.jpg */
+.contentCardHorizontal {
+  position: relative;
+  display: flex;
+  flex-direction: row; /* Выстраиваем профиль и категории в один ряд */
+  align-items: flex-start; /* Выравнивание по верхней границе */
+  gap: 45px; /* Большой отступ между левым профилем и правыми колонками */
+  width: 100%;
+  max-width: 960px; /* Ширина, чтобы все 3 колонки сели в ряд */
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 102, 0, 0.12);
+  border-radius: 28px;
+  padding: 45px 40px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 
+              0 0 40px rgba(255, 102, 0, 0.03);
+}
+
+/* ЛЕВЫЙ БЛОК: Вертикальный профиль (Аватар + Текст под ним) */
+.leftProfileBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрируем тексты строго под авой */
+  text-align: center;
+  flex-shrink: 0;
+  width: 180px; /* Фиксированная ширина левой части */
+}
+
+.avatarWrapper {
+  width: 130px; /* Крупная аватарка как на картинке */
+  height: 130px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(45deg, #ff3c00, #ff9900);
+  box-shadow: 0 0 25px rgba(255, 60, 0, 0.45);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+}
+
+.username {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin: 0 0 2px 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.nickname {
+  font-size: 1.05rem;
+  color: #b0b0b0;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.nickname span {
+  color: #ff6600;
+  font-weight: 700;
+}
+
+.bio {
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ОБЩИЙ КОНТЕЙНЕР ДЛЯ КОЛОНОК (Справа) */
+.sectionsContainer {
+  display: flex;
+  flex-direction: row; /* Выстраивает Медиа, Работу и Связь в ряд */
+  gap: 25px; /* Расстояние между колонками */
+  flex-grow: 1;
+  width: 100%;
+}
+
+/* КАЖДАЯ ОТДЕЛЬНАЯ КОЛОНКА */
+.categoryColumn {
+  flex: 1; /* Колонки делят свободное место поровну */
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryTitle {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #ff8c00;
+  margin: 0 0 15px 0;
+  padding-left: 6px;
+  font-weight: 800;
+  border-left: 3px solid #ff6600;
+}
+
+/* Вертикальный стек кнопок внутри каждой колонки */
+.linksStack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Расстояние между кнопками по вертикали */
+}
+
+/* Кнопки ссылок */
+.linkCard {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 14px 18px;
+  background: rgba(28, 28, 28, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  color: #e2e2e2;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.98rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+}
+
+.linkIcon {
+  margin-right: 12px;
+  font-size: 1.1rem;
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+}
+
+.clickableCard {
+  border: 1px solid rgba(255, 102, 0, 0.08);
+}
+
+/* Эффект наведения (мягкий сдвиг вправо для всех элементов) */
+.linkCard:hover {
+  background: rgba(255, 102, 0, 0.12);
+  color: #ff8c00;
+  border-color: #ff6600;
+  transform: translateX(4px);
+  box-shadow: 0 6px 20px rgba(255, 102, 0, 0.15);
+}
+
+/* Всплывающее уведомление */
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff6600;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  z-index: 100;
+  box-shadow: 0 10px 25px rgba(255, 102, 0, 0.4);
+  animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; top: 10px; }
+  15% { opacity: 1; top: 20px; }
+  85% { opacity: 1; top: 20px; }
+  100% { opacity: 0; top: 10px; }
+}
+
+/* Адаптивность: если экран узкий (планшеты/телефоны), плавно перестраиваем интерфейс в вертикальный стек */
+@media (max-width: 900px) {
+  .contentCardHorizontal {
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    padding: 35px 25px;
+  }
+  
+  .leftProfileBlock {
+    width: 100%;
+  }
+
+  .sectionsContainer {
+    flex-direction: column;
+    gap: 25px;
+  }
+}
